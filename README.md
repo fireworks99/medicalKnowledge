@@ -26,7 +26,7 @@
 
 ## 技术
 
-HTML里的图片采用 [Viewer.js](https://fengyuanchen.github.io/viewerjs/) 用于预览。静态资源托管采用 **Cloudflare Pages**，国内访问速度还可以，之前一直用的 **Github Pages** 或者 **vercial**，但他俩国内访问不了，或者能访问但很慢，另外国内的 Gitee Pages 暂停提供服务了，不然用它可能更好一些。
+HTML里的图片采用 [Viewer.js](https://fengyuanchen.github.io/viewerjs/) 用于预览。静态资源托管采用 **Cloudflare Pages**，国内访问速度还可以，之前一直用的 **Github Pages** 或者 **vercel**，但他俩国内访问不了，或者能访问但很慢，另外国内的 Gitee Pages 暂停提供服务了，不然用它可能更好一些。
 
 
 
