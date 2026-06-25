@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>疼痛科入院手续“一站式”办理流程</title>
+  <style>
+    :root {
+      --primary-color: #0d8a72;
+      --primary-light: #f0fdf4;
+      --secondary-color: #1e293b;
+      --bg-color: #f7fafc;
+      --card-bg: #ffffff;
+      --text-color: #334155;
+      --text-light: #64748b;
+      --border-radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* 头部页眉 */
+    .header {
+      background: linear-gradient(135deg, #14b8a6, #0d8a72);
+      color: white;
+      padding: 32px 24px;
+      border-radius: var(--border-radius);
+      margin-bottom: 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .header .dept-name {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .header h1 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .header .subtitle {
+      font-size: 0.95rem;
+      background: rgba(255, 255, 255, 0.2);
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    img {
+      height: 100%;
+      max-width: 100%;
+    }
+
+    /* 核心速记口诀卡片 */
+    .summary-card {
+      background: var(--primary-light);
+      border-left: 5px solid var(--primary-color);
+      padding: 20px;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .summary-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      font-size: 1.1rem;
+    }
+
+    .summary-card p {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f766e;
+      line-height: 1.5;
+    }
+
+    /* 通用卡片布局 */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      color: var(--primary-color);
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* 极简动线设计 */
+    .flow-badge-container {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    .flow-node {
+      background: #f1f5f9;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--secondary-color);
+      border: 1px solid #e2e8f0;
+    }
+
+    .flow-arrow {
+      color: var(--text-light);
+      font-weight: bold;
+    }
+
+    /* 纵向流式步骤条 */
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .step-item {
+      display: flex;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .step-item:hover {
+      border-color: #cbd5e1;
+      background: #f1f5f9;
+    }
+
+    .step-number {
+      background: var(--primary-color);
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      width: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-content {
+      padding: 16px;
+      flex-grow: 1;
+    }
+
+    .step-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .step-title {
+      font-weight: 700;
+      color: var(--secondary-color);
+      font-size: 1.05rem;
+    }
+
+    .step-location {
+      font-size: 0.85rem;
+      background: #e2e8f0;
+      color: #475569;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .step-action {
+      font-size: 0.95rem;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    /* 列表样式 */
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: var(--text-color);
+      line-height: 1.5;
+    }
+
+    .info-list li::before {
+      content: "✓";
+      color: var(--primary-color);
+      position: absolute;
+      left: 4px;
+      font-weight: bold;
+    }
+
+    /* 强调及温馨提示 */
+    .danger-text {
+      color: #e11d48;
+      font-weight: 600;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 32px;
+      padding: 0 16px;
+      line-height: 1.6;
+    }
+
+    /* 响应式媒体查询 */
+    @media (min-width: 768px) {
+      .container {
+        padding: 24px;
+      }
+
+      .header {
+        padding: 40px 32px;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .card {
+        padding: 28px;
+      }
+
+      .step-item {
+        border-radius: 10px;
+      }
+
+      .step-number {
+        width: 60px;
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="./viewer.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <div class="dept-name">大连医科大学附属第一医院 <br> 金普院区 · 疼痛科病房</div>
+      <h1>入院手续“一站式”<br>办理流程</h1>
+      <div class="subtitle">从公众号挂号到病房入住，<br>按步骤走，不迷路、不跑空</div>
+    </div>
+
+    <div class="summary-card">
+      <h3>💡 一句话记住</h3>
+      <p>挂号选择：疼痛科门诊 → 门诊医生开具住院证打印 → 携带住院证去往 1 楼住院处办住院 → 17楼B区护士站登记入住</p>
+    </div>
+
+
+    <h2 style="margin-bottom: 16px; font-size: 1.25rem; color: #0d8a72;">🖼️ 一图看懂办理路径</h2>
+
+    <img src="./1.png" alt="" style="margin-bottom: 16px;" class="preview">
+
+    <h2 style="margin-bottom: 16px; font-size: 1.25rem; color: #0d8a72;">➡️ 挂号流程</h2>
+
+    <div id="gallery">
+      <img src="./2.jpg" alt="" style="margin-bottom: 8px;">
+      <img src="./3.png" alt="" style="margin-bottom: 8px;">
+      <img src="./4.png" alt="" style="margin-bottom: 8px;">
+      <img src="./5.png" alt="" style="margin-bottom: 8px;">
+      <img src="./6.jpg" alt="" style="margin-bottom: 8px;">
+    </div>
+    <p style="text-align: center; font-weight: bold; margin-bottom: 24px;">选择医生挂号-支付费用</p>
+
+    <div class="card">
+      <h2>📍 楼层动线速记</h2>
+      <div class="flow-badge-container">
+        <div class="flow-node">挂号选择<span style="font-weight: bold;">金普疼痛门诊</span></div>
+        <div class="flow-arrow">⬇️</div>
+        <div class="flow-node"><span style="font-weight: bold;">新大楼2楼</span> 签到/挂号收费</div>
+        <div class="flow-arrow">⬇️</div>
+        <div class="flow-node"><span style="font-weight: bold;">16/19诊室</span> 医生办理入院</div>
+        <div class="flow-arrow">⬇️</div>
+        <div class="flow-node"><span style="font-weight: bold;">1楼住院处</span> 办理住院手续</div>
+        <div class="flow-arrow">⬇️</div>
+        <div class="flow-node"><span style="font-weight: bold;">17楼B区护士站</span> 登记分配病房</div>
+        <div class="flow-arrow">⬇️</div>
+        <div class="flow-node"><span style="font-weight: bold;">病房</span> 拎包入住</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📝 详细步骤（患者版）</h2>
+      <div class="step-list">
+
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-title-row">
+              <span class="step-title">公众号选择挂号</span>
+              <span class="step-location">手机端 / 新大楼2楼挂号窗口</span>
+            </div>
+            <p class="step-action">打开“大连医科大学附属第一医院”公众号，选择“金普院区”，挂疼痛科门诊医生号。</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-title-row">
+              <span class="step-title">到院签到/缴费</span>
+              <span class="step-location">新大楼2楼</span>
+            </div>
+            <p class="step-action">到医院新大楼2楼挂号收费处办理，或按照手机提示完成线上签到。</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-title-row">
+              <span class="step-title">门诊咨询医生</span>
+              <span class="step-location">16 / 19号诊室</span>
+            </div>
+            <p class="step-action">按照叫号前往疼痛科门诊16号或19号诊室就诊，并向医生说明需要办理入院。</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <div class="step-title-row">
+              <span class="step-title">填写住院证</span>
+              <span class="step-location">门诊诊室</span>
+            </div>
+            <p class="step-action">门诊医生评估符合住院指征后，为您开具/填写住院证。<span class="danger-text">请妥善保管住院证。</span></p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <div class="step-title-row">
+              <span class="step-title">办理住院手续</span>
+              <span class="step-location">1楼住院处</span>
+            </div>
+            <p class="step-action">携带住院证，前往1楼住院处办理住院手续。</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">6</div>
+          <div class="step-content">
+            <div class="step-title-row">
+              <span class="step-title">护士站登记</span>
+              <span class="step-location">17楼B区护士站</span>
+            </div>
+            <p class="step-action">办理完住院手续后，回到17楼B区护士站，找护士进行登记。</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">7</div>
+          <div class="step-content">
+            <div class="step-title-row">
+              <span class="step-title">分配病房并入住</span>
+              <span class="step-location">17楼B区病房</span>
+            </div>
+            <p class="step-action">护士会根据当前床位情况为您分配病房，患者拎包入住。</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">8</div>
+          <div class="step-content">
+            <div class="step-title-row">
+              <span class="step-title">等待治疗安排</span>
+              <span class="step-location">17楼疼痛科病房</span>
+            </div>
+            <p class="step-action">入住后，后续其他事项请听从管床医生和护士的安排，按要求等待治疗。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>💡 办理提醒</h2>
+      <ul class="info-list">
+        <li><strong>院区核对：</strong>公众号挂号时请务必注意核对选择的是<span class="danger-text">“金普院区”</span>和“疼痛科门诊”。</li>
+        <li><strong>人工协助：</strong>不方便操作智能手机的年长患者，可直接前往新大楼2楼导诊台处咨询护士协助办理。</li>
+        <li><strong>先后顺序：</strong>入院证是办理住院的重要凭证，<span class="danger-text">请务必先到1楼住院处办妥手续，再去17楼B区护士站登记</span>。</li>
+        <li><strong>动态调整：</strong>日常诊室号、窗口安排和现场具体流程如遇临时调整，请以当日实际叫号、导诊、门诊医生及护士站的现场通知为准。</li>
+        <li><strong>在院管理：</strong>成功入住病房后请严格遵守医院规定，<span
+            class="danger-text">不要自行离开病区</span>；后续的相关检查、用药、治疗时间等事项听从管床医生和护士安排。</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <p style="text-align: left;">💡 温馨提示：以上流程专用于疼痛科患者入院指导。现场如有临时变动，请以主管医护人员当日指导为准。</p>
+      <p style="margin-top: 6px; font-weight: 600; color: var(--primary-color);">疼痛科患者宣教</p>
+    </div>
+
+  </div>
+
+  <script src="./viewer.min.js"></script>
+  <script>
+    document.querySelectorAll('.preview').forEach(img => {
+      new Viewer(img);
+    });
+
+    new Viewer(document.getElementById('gallery'));
+  </script>
+</body>
+
+</html>

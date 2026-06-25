@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>疼痛科出院流程及健康宣教</title>
+  <style>
+    :root {
+      --primary-color: #0d8a72;
+      --primary-light: #f0fdf4;
+      --secondary-color: #1e293b;
+      --bg-color: #f7fafc;
+      --card-bg: #ffffff;
+      --text-color: #334155;
+      --text-light: #64748b;
+      --border-radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* 头部页眉 */
+    .header {
+      background: linear-gradient(135deg, #14b8a6, #0d8a72);
+      color: white;
+      padding: 32px 24px;
+      border-radius: var(--border-radius);
+      margin-bottom: 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .header .dept-name {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .header h1 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .header .subtitle {
+      font-size: 0.95rem;
+      background: rgba(255, 255, 255, 0.2);
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    img {
+      height: 100%;
+      max-width: 100%;
+      display: block;
+      border-radius: 8px;
+    }
+
+    /* 核心速记口诀卡片 */
+    .summary-card {
+      background: var(--primary-light);
+      border-left: 5px solid var(--primary-color);
+      padding: 20px;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .summary-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      font-size: 1.1rem;
+    }
+
+    .summary-card p {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f766e;
+      line-height: 1.5;
+    }
+
+    /* 通用卡片布局 */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      color: var(--primary-color);
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* 极简动线设计 */
+    .flow-badge-container {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    .flow-node {
+      background: #f1f5f9;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--secondary-color);
+      border: 1px solid #e2e8f0;
+      text-align: center;
+    }
+
+    .flow-arrow {
+      color: var(--text-light);
+      font-weight: bold;
+    }
+
+    /* 纵向流式步骤条 */
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .step-item {
+      display: flex;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .step-item:hover {
+      border-color: #cbd5e1;
+      background: #f1f5f9;
+    }
+
+    .step-number {
+      background: var(--primary-color);
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      width: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-content {
+      padding: 16px;
+      flex-grow: 1;
+    }
+
+    .step-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .step-title {
+      font-weight: 700;
+      color: var(--secondary-color);
+      font-size: 1.05rem;
+    }
+
+    .step-location {
+      font-size: 0.85rem;
+      background: #e2e8f0;
+      color: #475569;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .step-action {
+      font-size: 0.95rem;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    /* 网格卡片（适用于资料核对与居家宣教） */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .grid-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .grid-item-title {
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 列表样式 */
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: var(--text-color);
+      line-height: 1.5;
+    }
+
+    .info-list li::before {
+      content: "✓";
+      color: var(--primary-color);
+      position: absolute;
+      left: 4px;
+      font-weight: bold;
+    }
+
+    /* 警示卡片样式 */
+    .alert-card {
+      background: #fff5f5;
+      border: 1px solid #fee2e2;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .alert-card h2 {
+      color: #e11d48;
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #fee2e2;
+      padding-bottom: 10px;
+    }
+
+    .bullet-list {
+      list-style: none;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      color: #334155;
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      color: #e11d48;
+      position: absolute;
+      left: 6px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      top: -2px;
+    }
+
+    /* 强调及温馨提示 */
+    .danger-text {
+      color: #e11d48;
+      font-weight: 600;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 32px;
+      padding: 0 16px;
+      line-height: 1.6;
+    }
+
+    /* 响应式媒体查询 */
+    @media (min-width: 768px) {
+      .container {
+        padding: 24px;
+      }
+
+      .header {
+        padding: 40px 32px;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .card {
+        padding: 28px;
+      }
+
+      .step-item {
+        border-radius: 10px;
+      }
+
+      .step-number {
+        width: 60px;
+        font-size: 1.4rem;
+      }
+
+      .grid-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <div class="dept-name">大连医科大学附属第一医院 <br> 金普院区 · 疼痛科病房</div>
+      <h1>出院流程及健康宣教</h1>
+      <div class="subtitle">从病区确认到回家康复，<br>按步骤办，少跑腿、不遗漏</div>
+    </div>
+
+    <img src="./1.png" alt="" style="margin-bottom: 16px;" class="preview">
+
+    <div class="summary-card">
+      <h3>💡流程</h3>
+      <p>医生评估可出院 → 护士站确认 → 办理结算+领取离院带药 → 领取出院记录+诊断书 → 遵医嘱复诊与康复</p>
+    </div>
+
+    <div class="card">
+      <h2>📝 出院步骤</h2>
+      <div class="step-list">
+
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-title-row">
+              <span class="step-title">医生评估</span>
+            </div>
+            <p class="step-action">主管医生评估病情，确认符合出院条件。</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-title-row">
+              <span class="step-title">护士站通知</span>
+            </div>
+            <p class="step-action">17楼B区护士站通知出院事项，核对患者信息。</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-title-row">
+              <span class="step-title">听取宣教</span>
+            </div>
+            <p class="step-action">了解离院带药、康复训练、注意事项。</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <div class="step-title-row">
+              <span class="step-title">办理结算</span>
+            </div>
+            <p class="step-action">按通知到住院结算处办理出院结算，按离院带药清单领取药物。<span class="danger-text">请妥善保管住院证。</span></p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <div class="step-title-row">
+              <span class="step-title">安全离院</span>
+            </div>
+            <p class="step-action">清点个人物品，确认无静脉留置针、腕带等遗漏。</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">6</div>
+          <div class="step-content">
+            <div class="step-title-row">
+              <span class="step-title">按时复诊</span>
+            </div>
+            <p class="step-action">遵医嘱定期复诊，必要时提前预约金普疼痛科门诊。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📍 楼层动线速记</h2>
+      <div class="flow-badge-container">
+        <div class="flow-node"><span style="font-weight: bold;">17楼B区护士站</span> 确认出院信息</div>
+        <div class="flow-arrow">⬇️</div>
+        <div class="flow-node"><span style="font-weight: bold;">1楼住院结算处</span> 结算住院费用</div>
+        <div class="flow-arrow">⬇️</div>
+        <div class="flow-node">按离院带药清单<span style="font-weight: bold;">取药</span></div>
+        <div class="flow-arrow">⬇️</div>
+        <div class="flow-node">领取<span style="font-weight: bold;">出院记录与诊断书</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📋 出院前请核对：资料别落下</h2>
+      <div class="grid-container">
+        <div class="grid-item">
+          <div class="grid-item-title">📄 出院记录/诊断材料</div>
+          <p class="step-action">详细了解本次住院的最终诊断、治疗经过、手术/操作记录以及出院后医嘱。</p>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-title">💊 出院带药</div>
+          <p class="step-action">逐一确认带回家药物的药名、用法、用量、疗程以及特殊的储存、服用注意事项。</p>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-title">💰 费用材料</div>
+          <p class="step-action">住院费用清单、发票、医保结算单等，请妥善保管。</p>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-title">🧪 检查检验报告</div>
+          <p class="step-action">住院期间所做的各项影像学和血液检查报告，如需复诊或转诊请妥善留存。</p>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-title">📅 复诊安排</div>
+          <p class="step-action">明确复诊时间、科室、医生和预约方式。</p>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-title">🏋️ 康复训练要求</div>
+          <p class="step-action">明确每天练什么、练习几次、哪些动作不能做。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🏡 居家宣教：回家后怎么做</h2>
+      <div class="grid-container">
+        <div class="grid-item">
+          <div class="grid-item-title">1. 用药安全</div>
+          <p class="step-action">必须严格按出院医嘱规律服药，<span class="danger-text">严禁自行加量、减量、停药</span>，更不能盲目叠加服用其他同类型的止痛药。在使用镇痛药、抗神经痛药物期间，如出现明显的头晕、嗜睡、恶心、便秘、皮疹等不适，请及时告知医护人员评估。</p>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-title">2. 伤口/穿刺点护理</div>
+          <p class="step-action">在接受神经阻滞、软组织内封闭、脉冲射频等局部微创治疗后，穿刺点皮肤应保持清洁与干燥。如无医生特殊医嘱，<span class="danger-text">治疗后24小时内穿刺部位尽量避免沾水</span>，同时切勿用手揉搓或自行给予局部热敷。</p>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-title">3. 活动与康复</div>
+          <p class="step-action">请谨记“疼痛暂时缓解不代表可以立即过度活动”。特别是肩颈腰腿痛的患者，出院后应当在医生或康复治疗师的指导下，进行<span style="font-weight: bold;">循序渐进</span>的恢复性训练，避免忍痛硬练、突然增加身体负重以及剧烈的局部牵拉。</p>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-title">4. 饮食与生活方式</div>
+          <p class="step-action">保持规律的作息时间，日常注意保暖，避免受凉和过度劳累。根据自身身体情况保证适量饮水、适当增加膳食纤维的摄入以预防便秘。合并有糖尿病、高血压等基础疾病的患者，请继续严格做好原发病的常规管理。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 异常情况警示卡片 -->
+    <div class="alert-card">
+      <h2>⚠️ 出现这些情况，请及时就医或联系病区</h2>
+      <p style="font-weight: bold; margin-bottom: 12px; color: #334155;">身体出现以下异常时，请不要采取“忍一忍”的态度等待其自行好转：</p>
+      <ul class="bullet-list">
+        <li>原有疼痛突然间<span class="danger-text">明显加重</span>，或者身体出现新发的麻木、无力、行走不稳等神经压迫症状；</li>
+        <li>微创治疗的穿刺部位皮肤出现明显红肿、有渗液、出血不止，或自身出现<span class="danger-text">持续性发热</span>；</li>
+        <li>服用出院带药后出现皮疹、喉头紧迫感、呼吸困难、严重头晕、神志不清或意识模糊等严重药物过敏/毒性反应；</li>
+        <li>恶心呕吐症状明显、导致完全不能进食进水，或者<span class="danger-text">便秘超过3天</span>仍未缓解，并伴有明显的腹胀和腹痛；</li>
+        <li>在预定复诊时间前症状出现反复、程度严重并明显影响到夜间睡眠或白天的日常活动。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>💡 复诊提醒</h2>
+      <ul class="info-list">
+        <li><strong>遵医嘱随访：</strong>请严格按照出院记录上标明的推荐时间回院复诊；需要长期服用镇痛药、抗神经痛药物或进行长期康复训练的患者，<span class="danger-text">非常不建议自行中断随访</span>。</li>
+        <li><strong>备齐就诊资料：</strong>复诊时请务必随身携带您的<span style="font-weight: bold;">出院记录、既往影像资料（片子）、检验报告单以及当前正在服用的药物或剩余药盒</span>，以便于门诊医生准确评估疗效并及时调整下一阶段的治疗方案。</li>
+        <li><strong>提前预约挂号：</strong>如需要继续治疗，请按医生建议，提前预约疼痛科门诊或相关治疗项目。</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <p style="text-align: left;">💡 温馨提示：出院流程、费用结算方式、资料领取地点等，如有临时调整，请一律以当日主管医生、护士站及医院现场的最新通知为准。</p>
+      <p style="margin-top: 6px; font-weight: 600; color: var(--primary-color);">疼痛科患者宣教</p>
+    </div>
+
+  </div>
+</body>
+
+</html>

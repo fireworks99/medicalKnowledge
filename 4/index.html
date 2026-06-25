@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>疼痛科疼痛相关安全用药科普</title>
+  <style>
+    :root {
+      --primary-color: #0d8a72;
+      --primary-light: #f0fdf4;
+      --secondary-color: #1e293b;
+      --bg-color: #f7fafc;
+      --card-bg: #ffffff;
+      --text-color: #334155;
+      --text-light: #64748b;
+      --border-radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* 头部页眉 */
+    .header {
+      background: linear-gradient(135deg, #14b8a6, #0d8a72);
+      color: white;
+      padding: 32px 24px;
+      border-radius: var(--border-radius);
+      margin-bottom: 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .header .dept-name {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .header h1 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .header .subtitle {
+      font-size: 0.95rem;
+      background: rgba(255, 255, 255, 0.2);
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    img {
+      height: 100%;
+      max-width: 100%;
+      display: block;
+      border-radius: 8px;
+    }
+
+    /* 核心速记卡片 */
+    .summary-card {
+      background: var(--primary-light);
+      border-left: 5px solid var(--primary-color);
+      padding: 20px;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .summary-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      font-size: 1.1rem;
+    }
+
+    /* 通用卡片布局 */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      color: var(--primary-color);
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* 响应式表格设计 */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      margin-bottom: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+      min-width: 550px;
+    }
+
+    th {
+      background-color: var(--primary-light);
+      color: var(--primary-color);
+      font-weight: 700;
+      padding: 12px 10px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #f1f5f9;
+      color: var(--text-color);
+      vertical-align: top;
+    }
+
+    tr:hover td {
+      background-color: #f8fafc;
+    }
+
+    /* 网格卡片（两列对比） */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .grid-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .grid-item-title {
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+      border-bottom: 1px dashed #cbd5e1;
+      padding-bottom: 6px;
+    }
+
+    /* 七不要矩阵 */
+    .matrix-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    @media (min-width: 480px) {
+      .matrix-container {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .matrix-item {
+      background: #fff5f5;
+      border: 1px solid #fee2e2;
+      color: #e11d48;
+      font-weight: 700;
+      text-align: center;
+      padding: 12px 6px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    .matrix-item.ask {
+      background: var(--primary-light);
+      border-color: #bbf7d0;
+      color: var(--primary-color);
+    }
+
+    /* 列表样式 */
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: var(--text-color);
+      line-height: 1.5;
+    }
+
+    .info-list li::before {
+      content: "✓";
+      color: var(--primary-color);
+      position: absolute;
+      left: 4px;
+      font-weight: bold;
+    }
+
+    /* 警示卡片样式 */
+    .alert-card {
+      background: #fff5f5;
+      border: 1px solid #fee2e2;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .alert-card h2 {
+      color: #e11d48;
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #fee2e2;
+      padding-bottom: 10px;
+    }
+
+    .bullet-list {
+      list-style: none;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      color: #334155;
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      color: #e11d48;
+      position: absolute;
+      left: 6px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      top: -2px;
+    }
+
+    .danger-text {
+      color: #e11d48;
+      font-weight: 600;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 32px;
+      padding: 0 16px;
+      line-height: 1.6;
+    }
+
+    /* 响应式媒体查询 */
+    @media (min-width: 768px) {
+      .container {
+        padding: 24px;
+      }
+
+      .header {
+        padding: 40px 32px;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .card {
+        padding: 28px;
+      }
+
+      .grid-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <div class="dept-name">大连医科大学附属第一医院 <br> 金普院区 · 疼痛科病房</div>
+      <h1>疼痛相关安全用药科普</h1>
+      <div class="subtitle">认识甾体类、非甾体类、阿片类和非阿片类药物，安全镇痛、减少风险</div>
+    </div>
+
+    <div class="summary-card">
+      <h3>💡 先记住这 4 句话</h3>
+      <ul class="info-list" style="color: #0f766e;">
+        <li>止痛药不是“越多越好”，不同药物叠加使用必须听医生安排。</li>
+        <li>服药前请主动告知过敏史、胃病史、肝肾功能、心脑血管病、哮喘、妊娠/哺乳情况，以及正在使用的所有药物和保健品。</li>
+        <li>用药后请观察疼痛缓解程度和不适反应，如头晕、嗜睡、恶心、便秘、皮疹、黑便等。</li>
+        <li>不要自行加量、减量、停药或换药；药物名称相似时，请以医生处方和护士核对为准。</li>
+      </ul>
+    </div>
+
+    <!-- 一、疼痛药物大致分几类？ -->
+    <div class="card">
+      <h2>一、疼痛药物大致分几类？</h2>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 22%">药物类别</th>
+              <th style="width: 23%">常见代表</th>
+              <th style="width: 25%">主要作用</th>
+              <th style="width: 30%">患者要点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>甾体类药物</strong></td>
+              <td>糖皮质激素（地塞米松、甲泼尼龙等）</td>
+              <td>抗炎、减轻神经周围水肿，部分疼痛疾病可短期使用</td>
+              <td>糖尿病、高血压、胃溃疡、感染风险者需重点告知；<span class="danger-text">不能突然停药</span>。</td>
+            </tr>
+            <tr>
+              <td><strong>非甾体抗炎药</strong></td>
+              <td>醋氯芬酸缓释片、塞来昔布（西乐葆）等</td>
+              <td>缓解炎症性疼痛、关节痛、术后痛等</td>
+              <td>避免多种 NSAIDs 同时服用；胃病、肾病、心脑血管病、服抗凝药者需谨慎。</td>
+            </tr>
+            <tr>
+              <td><strong>阿片类镇痛药</strong></td>
+              <td>曲马多，以及更强阿片类药物</td>
+              <td>用于中重度疼痛或其他药物控制不佳时</td>
+              <td>可出现嗜睡、头晕、恶心、便秘等；<span class="danger-text">严禁自行加量或与酒精同用</span>。</td>
+            </tr>
+            <tr>
+              <td><strong>非阿片类/辅助镇痛药</strong></td>
+              <td>普瑞巴林、对乙酰氨基酚、外用药等</td>
+              <td>针对神经痛、轻中度疼痛或联合镇痛</td>
+              <td>普瑞巴林常用于神经病理性疼痛；注意头晕、嗜睡、下肢水肿，停药需遵医嘱逐渐调整。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 二、病房重点药物 -->
+    <div class="card">
+      <h2>二、病房重点药物：这样理解更安全</h2>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 20%">药物名称</th>
+              <th style="width: 30%">适合哪类疼痛</th>
+              <th style="width: 25%">常见不适</th>
+              <th style="width: 25%">安全提醒</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>普瑞巴林</strong></td>
+              <td>带状疱疹后神经痛、糖尿病周围神经痛、颈腰椎相关神经痛等。</td>
+              <td>头晕、嗜睡、乏力、视物模糊、下肢水肿、体重增加等。</td>
+              <td>首次用药/加量后<span style="font-weight: bold;">注意防跌倒</span>；不饮酒；不突然停药。</td>
+            </tr>
+            <tr>
+              <td><strong>曲马多</strong></td>
+              <td>中度至较重疼痛，属于弱阿片类中枢性镇痛药。</td>
+              <td>恶心、呕吐、便秘、头晕、嗜睡、出汗、口干等。</td>
+              <td><span class="danger-text">避免驾驶和高空作业</span>；合用安眠/抗抑郁药需提前说明。</td>
+            </tr>
+            <tr>
+              <td><strong>醋氯芬酸缓释片</strong></td>
+              <td>非甾体抗炎药，用于炎症相关疼痛、关节痛、软组织疼痛等。</td>
+              <td>胃痛、反酸、恶心、少数可出现胃肠道出血或肾功能影响。</td>
+              <td>通常建议<span style="font-weight: bold;">餐后服用</span>；出现黑便、呕血应立即告知。</td>
+            </tr>
+            <tr>
+              <td><strong>塞来昔布<br>(西乐葆)</strong></td>
+              <td>选择性 COX-2 抑制剂，用于炎症性疼痛、骨关节痛等。</td>
+              <td>消化不良、腹痛、恶心、头晕、水肿、血压波动等。</td>
+              <td>有磺胺类过敏、严重心脑血管病、胃肠道出血史者应主动告知。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 三、对比栏 -->
+    <div class="card">
+      <h2>三、甾体类和非甾体类：名字相似，作用不同</h2>
+      <div class="grid-container">
+        <div class="grid-item">
+          <div class="grid-item-title">💊 甾体类：重点是“抗炎、消肿”</div>
+          <ul class="bullet-list">
+            <li>短期用于神经水肿、炎症反应明显的疼痛。</li>
+            <li>可能影响血糖、血压、睡眠，增加感染风险。</li>
+            <li>糖尿病、高血压、胃溃疡、青光眼、骨质疏松、正在感染者需主动告知。</li>
+            <li><span class="danger-text">长期或较大剂量使用后，不要自行突然停药</span>。</li>
+          </ul>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-title">🩹 非甾体类：重点是“抗炎、止痛”</div>
+          <ul class="bullet-list">
+            <li>醋氯芬酸缓释片、塞来昔布（西乐葆）属于此类。</li>
+            <li>常用于关节、肌肉、软组织和炎症相关疼痛。</li>
+            <li>可能刺激胃、影响肾功能、升高血压或增加出血风险。</li>
+            <li><span class="danger-text">不要同时自行服用两种或多种 NSAIDs</span>。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 四、阿片与非阿片 -->
+    <div class="card">
+      <h2>四、阿片类和非阿片类：止痛强度与风险不同</h2>
+      <ul class="bullet-list" style="padding: 4px;">
+        <li><strong>阿片类药物：</strong>可用于中重度疼痛，但可能带来嗜睡、头晕、便秘、恶心、呼吸变慢、耐受和依赖等风险，应严格按医嘱使用。</li>
+        <li><strong>曲马多要点：</strong>属于弱阿片类中枢性镇痛药，<span class="danger-text">不可与酒精同用</span>；服药后若困倦、头晕，需防跌倒并避免驾驶。</li>
+        <li><strong>非阿片类药物：</strong>包括对乙酰氨基酚、非甾体抗炎药、普瑞巴林等，不同药物机制不同，可在医生方案中联合使用。</li>
+        <li><strong>成分重叠风险：</strong>对乙酰氨基酚常见于多种复方感冒药和止痛药中，<span class="danger-text">重复服用容易超量</span>，肝病或长期饮酒者尤其要谨慎。</li>
+      </ul>
+    </div>
+
+    <!-- 五、安全用药“七不要” -->
+    <div class="card">
+      <h2>五、安全用药“七不要”</h2>
+      <div class="matrix-container">
+        <div class="matrix-item">❌ 不要自行加量</div>
+        <div class="matrix-item">❌ 不要突然停药</div>
+        <div class="matrix-item">❌ 不要混酒服药</div>
+        <div class="matrix-item">❌ 不要重复叠加</div>
+        <div class="matrix-item">❌ 不要把药给别人</div>
+        <div class="matrix-item">❌ 不要隐瞒病史</div>
+        <div class="matrix-item">❌ 不要硬扛副作用</div>
+        <div class="matrix-item ask">💡 有疑问及时问</div>
+      </div>
+    </div>
+
+    <!-- 六、异常情况警示卡片 -->
+    <div class="alert-card">
+      <h2>⚠️ 出现这些情况，请及时告知医生或护士</h2>
+      <p style="font-weight: bold; margin-bottom: 12px; color: #334155;">请不要等待，及时说：</p>
+      <ul class="bullet-list">
+        <li><span class="danger-text">黑便、呕血</span>、持续胃痛或腹痛明显加重。</li>
+        <li><span class="danger-text">呼吸变慢</span>、胸闷气短、叫不醒、意识混乱。</li>
+        <li>严重头晕、站立不稳、跌倒，或明显嗜睡影响活动。</li>
+        <li>皮疹、面唇肿胀、喉咙发紧、喘憋等过敏表现。</li>
+        <li>尿量明显减少、下肢水肿、血压明显升高。</li>
+        <li><span class="danger-text">便秘超过 3 天</span>不缓解，伴腹胀、呕吐或无法排气。</li>
+        <li>疼痛突然明显加重，或按医嘱用药后仍控制不佳。</li>
+      </ul>
+    </div>
+
+    <!-- 七、如何配合评估 -->
+    <div class="card">
+      <h2>七、患者如何配合医生评估用药效果？</h2>
+      <ul class="info-list">
+        <li><strong>记录疼痛分数：</strong>每天可用 0-10 分记录疼痛程度（0 分不痛，10 分为无法忍受的最痛）。</li>
+        <li><strong>描述疼痛性质：</strong>记录疼痛部位、性质和诱因（如灼烧样、针刺样、电击样、胀痛、活动后加重等）。</li>
+        <li><strong>观察服药变化：</strong>记录多久起效、能维持多久、是否影响睡眠、是否出现不良反应。</li>
+        <li><strong>主动积极反馈：</strong>复诊或查房时主动反馈，医生会根据评分、病情变化和不良反应动态调整方案。</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <p style="text-align: left;">💡 温馨提示：本资料用于患者科普宣教，不能替代医生诊疗意见。具体用药名称、剂量、次数、疗程和停药方式，请以主管医生处方及护士用药指导为准。</p>
+      <p style="margin-top: 6px; font-weight: 600; color: var(--primary-color);">疼痛科患者宣教</p>
+    </div>
+
+  </div>
+</body>
+
+</html>

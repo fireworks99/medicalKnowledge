@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多项综合检查影像与检验指南</title>
+  <style>
+    :root {
+      --primary-color: #0d8a72;
+      --primary-light: #f0fdf4;
+      --success-color: #16a34a;
+      --success-light: #f0fdf4;
+      --warning-color: #ea580c;
+      --warning-light: #fff7ed;
+      --danger-color: #dc2626;
+      --text-color: #334155;
+      --text-light: #64748b;
+      --bg-color: #f7fafc;
+      --card-bg: #ffffff;
+      --border-radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* 头部页眉 */
+    .header {
+      background: linear-gradient(135deg, #14b8a6, #0d8a72);
+      color: white;
+      padding: 32px 24px;
+      border-radius: var(--border-radius);
+      margin-bottom: 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .header .dept-name {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .header .subtitle {
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.2);
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      line-height: 1.4;
+    }
+
+    /* 通用卡片布局 */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 检验类特殊卡片 */
+    .info-card {
+      background: var(--primary-light);
+      border-left: 5px solid var(--primary-color);
+      padding: 16px;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      margin-bottom: 20px;
+    }
+    
+    .info-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 6px;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 检查流程数字化路标 */
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .process-node {
+      background: #f1f5f9;
+      border-left: 4px solid var(--primary-color);
+      padding: 12px 14px;
+      border-radius: 0 8px 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .node-num {
+      background: var(--primary-color);
+      color: white;
+      font-weight: bold;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 0.85rem;
+    }
+
+    .node-text {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* 现场指引图排版 */
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .photo-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .photo-item img:hover {
+      transform: scale(1.01);
+    }
+
+    .photo-caption {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    /* 高亮文本 */
+    .highlight {
+      color: var(--warning-color);
+      font-weight: bold;
+    }
+
+    /* 页脚 */
+    .footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 32px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 16px;
+    }
+
+    /* 响应式媒体查询 */
+    @media (min-width: 768px) {
+      .container {
+        padding: 24px;
+      }
+
+      .header {
+        padding: 40px 32px;
+      }
+
+      .header h1 {
+        font-size: 1.9rem;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .photo-gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .triple-gallery {
+        grid-template-columns: 1fr 1fr 1fr !important;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="./viewer.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <div class="dept-name">大连医科大学附属第一医院 <br> 金普院区 · 疼痛科病房</div>
+      <h1>综合检查与检验指引指南</h1>
+      <div class="subtitle">CT、X线、肌骨超声、血常规等项目<br>检查流程与预约位置须知</div>
+    </div>
+
+    <div class="card">
+      <h2>🧠 一、CT 检查影像指南</h2>
+      <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 12px;">适用项目：平扫CT检查等</p>
+      
+      <div class="process-grid">
+        <div class="process-node">
+          <span class="node-num">01</span>
+          <div class="node-text">2楼缴费完成后</div>
+        </div>
+        <div class="process-node">
+          <span class="node-num">02</span>
+          <div class="node-text">平扫CT请去 <span class="highlight">1楼B区5号窗口</span> 先预约</div>
+        </div>
+        <div class="process-node" style="grid-column: 1 / -1;">
+          <span class="node-num">03</span>
+          <div class="node-text">按约定时间，平扫CT去 <span class="highlight">负1楼B区</span> 医学影像中心的 <span class="highlight">CT扫描室</span></div>
+        </div>
+        <div class="process-node" style="grid-column: 1 / -1;">
+          <span class="node-num">04</span>
+          <div class="node-text">打印胶片和报告请去 <span class="highlight">1楼B区自助机</span> 进行打印</div>
+        </div>
+      </div>
+
+      <div class="photo-gallery" id="ct-gallery">
+        <div class="photo-item">
+          <img src="./1.png" alt="1楼B区5号窗口先预约">
+          <div class="photo-caption">📍 1楼B区5号窗口影像预约</div>
+        </div>
+        <div class="photo-item">
+          <img src="./2.png" alt="负1楼B区医学影像中心">
+          <div class="photo-caption">📍 负1楼B区 CT扫描室候诊区</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <h2>🦴 二、X 线 检 查 指 南</h2>
+      <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 12px;">适用项目：DR摄片、各部位正侧位等</p>
+      
+      <div class="process-grid">
+        <div class="process-node">
+          <span class="node-num">01</span>
+          <div class="node-text">2楼缴费完成后</div>
+        </div>
+        <div class="process-node">
+          <span class="node-num">02</span>
+          <div class="node-text">X线请去 <span class="highlight">1楼B区5号窗口</span> 先预约</div>
+        </div>
+        <div class="process-node" style="grid-column: 1 / -1;">
+          <span class="node-num">03</span>
+          <div class="node-text">按约定时间，请去 <span class="highlight">1楼C区</span> 医学影像中心机器签到，然后再去机器旁的 <span class="highlight">DR摄片室</span></div>
+        </div>
+        <div class="process-node" style="grid-column: 1 / -1;">
+          <span class="node-num">04</span>
+          <div class="node-text">打印胶片和报告请去 <span class="highlight">1楼B区自助机</span> 进行打印</div>
+        </div>
+      </div>
+
+      <div class="photo-gallery triple-gallery" id="xray-gallery">
+        <div class="photo-item">
+          <img src="./1.png" alt="1楼B区5号窗口先预约">
+          <div class="photo-caption">📍 1楼B区5号窗口预约</div>
+        </div>
+        <div class="photo-item">
+          <img src="./4.png" alt="1楼C区医学影像中心机器签到">
+          <div class="photo-caption">📍 1楼C区 机器刷卡签到处</div>
+        </div>
+        <div class="photo-item">
+          <img src="./5.png" alt="1楼B区自助机进行打印">
+          <div class="photo-caption">📍 1楼B区 自助报告胶片机</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <h2>🔊 三、肌 骨 超 声 检 查 指 南</h2>
+      <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 12px;">适用项目：关节、肌肉、神经水肿等超声检查</p>
+      
+      <div class="process-grid">
+        <div class="process-node">
+          <span class="node-num">01</span>
+          <div class="node-text">2楼缴费完成后</div>
+        </div>
+        <div class="process-node">
+          <span class="node-num">02</span>
+          <div class="node-text">前往 <span class="highlight">6楼B区门诊超声中心</span></div>
+        </div>
+        <div class="process-node" style="grid-column: 1 / -1;">
+          <span class="node-num">03</span>
+          <div class="node-text">在超声中心的自助机进行 <span class="highlight">机器签到</span>，签到后静候呼叫并行肌骨超声检查</div>
+        </div>
+        <div class="process-node" style="grid-column: 1 / -1;">
+          <span class="node-num">04</span>
+          <div class="node-text">检查完成后，直接在 <span class="highlight">6楼B区门诊超声中心自助机</span> 打印彩色报告</div>
+        </div>
+      </div>
+
+      <div class="photo-gallery" id="ultrasound-gallery">
+        <div class="photo-item">
+          <img src="./6.png" alt="6楼B区门诊超声中心">
+          <img src="./7.png" alt="6楼B区门诊超声中心">
+          <div class="photo-caption">📍 6楼B区 门诊超声中心向导</div>
+        </div>
+        <div class="photo-item">
+          <img src="./6.png" alt="自助机超声签到及打印">
+          <div class="photo-caption">📍 6楼自助机 签到及彩色报告打印</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="info-card">
+      <h3>🩸 四、血常规、血钙等检验检查</h3>
+      <p style="font-size: 0.95rem; color: var(--text-color); margin-top: 6px; font-weight: 500;">
+        请前往 <span class="highlight" style="font-size: 1.05rem; background:#fff; padding:2px 6px; border-radius:4px; border:1px solid #fcd34d;">新大楼 2楼相关科室</span>检查。
+      </p>
+    </div>
+
+
+    <div class="footer">
+      <p style="margin-top: 6px; font-weight: 600; color: var(--primary-color);">疼痛科患者宣教</p>
+    </div>
+
+  </div>
+
+  <script src="./viewer.min.js"></script>
+  <script>
+    // 为每个卡片内的图片库独立初始化Viewer灯箱组件
+    new Viewer(document.getElementById('ct-gallery'));
+    new Viewer(document.getElementById('xray-gallery'));
+    new Viewer(document.getElementById('ultrasound-gallery'));
+  </script>
+</body>
+
+</html>

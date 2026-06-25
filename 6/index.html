@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>肩颈疼痛不用忍：一体化疼痛治疗科普</title>
+  <style>
+    :root {
+      --primary-color: #0d8a72;
+      --primary-light: #f0fdf4;
+      --secondary-color: #1e293b;
+      --bg-color: #f7fafc;
+      --card-bg: #ffffff;
+      --text-color: #334155;
+      --text-light: #64748b;
+      --border-radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* 头部页眉 */
+    .header {
+      background: linear-gradient(135deg, #14b8a6, #0d8a72);
+      color: white;
+      padding: 32px 24px;
+      border-radius: var(--border-radius);
+      margin-bottom: 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .header .dept-name {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .header .subtitle {
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.2);
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      line-height: 1.4;
+    }
+
+    /* 核心速记卡片 */
+    .summary-card {
+      background: var(--primary-light);
+      border-left: 5px solid var(--primary-color);
+      padding: 20px;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .summary-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    /* 通用卡片布局 */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 10px;
+    }
+
+    /* 响应式表格 */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      margin-bottom: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+      min-width: 550px;
+    }
+
+    th {
+      background-color: var(--primary-light);
+      color: var(--primary-color);
+      font-weight: 700;
+      padding: 12px 10px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: top;
+    }
+
+    /* 两列/四列网格 */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .grid-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .grid-item-title {
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 6px;
+    }
+
+    /* 一体化步骤流程 */
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .flow-step {
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .flow-step .top {
+      display: flex;
+      justify-content: center;
+    }
+
+    .flow-num {
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.85rem;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    /* 列表通用样式 */
+    .info-list, .bullet-list, .alert-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .info-list li::before {
+      content: "✓";
+      color: var(--primary-color);
+      position: absolute;
+      left: 4px;
+      font-weight: bold;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      color: var(--primary-color);
+      position: absolute;
+      left: 4px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      top: -2px;
+    }
+
+    /* 警示告知卡片样式 */
+    .notice-card {
+      background: #fff8f1;
+      border-left: 5px solid #f97316;
+      padding: 16px;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      margin-bottom: 24px;
+    }
+
+    .notice-card h3 {
+      color: #ea580c;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .notice-card li::before {
+      content: "•";
+      color: #f97316;
+    }
+
+    .alert-card {
+      background: #fff5f5;
+      border: 1px solid #fee2e2;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .alert-card h2 {
+      color: #e11d48;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #fee2e2;
+      padding-bottom: 10px;
+    }
+
+    .alert-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .alert-list li::before {
+      content: "⚠️";
+      position: absolute;
+      left: 0;
+      font-size: 0.9rem;
+      top: 1px;
+    }
+
+    .danger-text {
+      color: #e11d48;
+      font-weight: 600;
+    }
+
+    /* 日常注意并排看板 */
+    .compare-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .compare-box {
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .compare-box.do {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+    }
+
+    .compare-box.dont {
+      background: #fff5f5;
+      border: 1px solid #fee2e2;
+    }
+
+    .compare-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .compare-box.do .compare-title { color: #166534; }
+    .compare-box.dont .compare-title { color: #991b1b; }
+
+    .compare-box li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+
+    .compare-box.do li::before { content: "✅"; position: absolute; left: 0; font-size: 0.8rem; top: 1px; }
+    .compare-box.dont li::before { content: "❌"; position: absolute; left: 0; font-size: 0.8rem; top: 1px; }
+
+    .footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+
+    /* 响应式媒体查询 */
+    @media (min-width: 768px) {
+      .container { padding: 24px; }
+      .header { padding: 40px 32px; }
+      .header h1 { font-size: 1.8rem; }
+      .card { padding: 28px; }
+      .grid-container { grid-template-columns: 1fr 1fr; }
+      .compare-container { grid-template-columns: 1fr 1fr; }
+      .flow-container { flex-direction: row; }
+      .flow-step { flex-direction: column; flex: 1; align-items: center; text-align: center; }
+      .flow-num { margin-right: 0; margin-bottom: 8px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- 页头 -->
+    <div class="header">
+      <div class="dept-name">大连医科大学附属第一医院 <br> 金普院区 · 疼痛科病房</div>
+      <h1>肩颈疼痛不用忍<br>一体化疼痛治疗科普</h1>
+      <div class="subtitle">适用于肩周炎、颈肩综合征、肱二头肌长头肌腱炎、肩袖相关疼痛等患者参考</div>
+    </div>
+
+    <!-- 先记住这4句话 -->
+    <div class="summary-card">
+      <h3>💡 先记住这 4 句话</h3>
+      <ul class="info-list" style="color: #0f766e;">
+        <li>肩颈痛不一定只是“受凉”或“劳损”，可能与关节囊、肌腱、滑囊、颈椎神经或周围神经敏化有关。</li>
+        <li>疼痛治疗的目标不是单纯“止痛”，而是先控制疼痛，再恢复活动度和日常功能。</li>
+        <li>神经阻滞、软组织内封闭、冲击波、康复训练、周围神经脉冲射频等，需要经医生评估后个体化选择。</li>
+        <li>疼痛缓解后更要重视康复训练，避免“好了就不练、痛了才治疗”。</li>
+      </ul>
+    </div>
+
+    <!-- 一、哪些肩颈问题适合重点关注？ -->
+    <div class="card">
+      <h2>一、哪些肩颈问题适合重点关注？</h2>
+      <div class="grid-container">
+        <div class="grid-item">
+          <div class="grid-item-title">🦴 肩周炎/冻结肩</div>
+          <p style="font-size: 0.9rem; color: var(--text-color);">肩部疼痛伴活动受限，梳头、穿衣、摸后背困难，夜间痛常见。</p>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-title">⚡ 颈肩综合征</div>
+          <p style="font-size: 0.9rem; color: var(--text-color);">颈部酸胀、肩背牵拉痛，可伴上肢麻木、放射痛或久坐后加重。</p>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-title">🥢 肱二头肌长头肌腱炎</div>
+          <p style="font-size: 0.9rem; color: var(--text-color);">肩前方疼痛明显，抬举、端物、外旋或按压肩前部时疼痛加重。</p>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-title">🛡️ 肩袖/肩峰下相关疼痛</div>
+          <p style="font-size: 0.9rem; color: var(--text-color);">抬手过肩、侧卧压肩或外展活动时疼痛，常与肩袖肌腱、滑囊炎症有关。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 二、一体化疼痛治疗怎么做？ -->
+    <div class="card">
+      <h2>二、一体化疼痛治疗怎么做？</h2>
+      <div class="flow-container">
+        <div class="flow-step">
+          <div class="top">
+            <div class="flow-num">1</div>
+            <div style="font-weight: bold; font-size: 0.95rem; margin-bottom: 4px;">评估</div>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-light);">询问病史、体格检查、疼痛评分，必要时结合影像学检查，判断疼痛来源。</p>
+        </div>
+        <div class="flow-step">
+          <div class="top">
+            <div class="flow-num">2</div>
+            <div style="font-weight: bold; font-size: 0.95rem; margin-bottom: 4px;">镇痛</div>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-light);">通过药物、神经阻滞或软组织内封闭，先降低疼痛强度。</p>
+        </div>
+        <div class="flow-step">
+          <div class="top">
+            <div class="flow-num">3</div>
+            <div style="font-weight: bold; font-size: 0.95rem; margin-bottom: 4px;">调控</div>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-light);">对慢性或顽固性疼痛，可评估冲击波或周围神经脉冲射频等治疗。</p>
+        </div>
+        <div class="flow-step">
+          <div class="top">
+            <div class="flow-num">4</div>
+            <div style="font-weight: bold; font-size: 0.95rem; margin-bottom: 4px;">训练</div>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-light);">在疼痛可耐受范围内进行活动度、肩胛稳定和力量训练。</p>
+        </div>
+        <div class="flow-step">
+          <div class="top">
+            <div class="flow-num">5</div>
+            <div style="font-weight: bold; font-size: 0.95rem; margin-bottom: 4px;">随访</div>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-light);">根据疼痛、睡眠、活动度和功能改善情况调整方案。</p>
+        </div>
+      </div>
+      <div style="background: var(--bg-color); padding: 14px; border-radius: 8px; margin-top: 16px; font-size: 0.9rem;">
+        <p style="font-weight: bold; color: var(--primary-color); margin-bottom: 4px;">📋 治疗原则：</p>
+        <ul class="bullet-list" style="color: var(--text-color);">
+          <li>不是每位患者都需要全部治疗，医生会根据疾病、程度及基础病等进行个体化定制。</li>
+          <li>局部注射和介入治疗的作用是帮助患者<span style="font-weight: 600;">“打开康复窗口”</span>，后续训练和生活调整同样重要。</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 治疗前告知（重要前置条件） -->
+    <div class="notice-card">
+      <h3>🔍 治疗前请主动告诉医生</h3>
+      <ul class="bullet-list" style="color: #c2410c; font-size: 0.9rem;">
+        <li>是否有药物过敏、严重心肺疾病、肝肾功能异常、糖尿病、凝血功能异常。</li>
+        <li>是否正在服用阿司匹林、氯吡格雷、华法林、利伐沙班等抗栓或抗凝药物。</li>
+        <li>是否处于感染发热期、局部皮肤破溃期，或近期接受过其他注射/手术治疗。</li>
+        <li>是否妊娠、备孕或哺乳，以及是否安装心脏起搏器、神经刺激器等植入设备。</li>
+      </ul>
+    </div>
+
+    <!-- 三、科室常用治疗方式 -->
+    <div class="card">
+      <h2>三、科室常用治疗方式</h2>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 25%">治疗方式</th>
+              <th style="width: 35%">主要作用</th>
+              <th style="width: 40%">患者需要配合</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>神经阻滞治疗</strong></td>
+              <td>在相关神经或其周围精准给药，减轻疼痛、降低神经敏感性。</td>
+              <td>治疗后短时间内注意休息；如出现明显麻木无力、头晕、过敏等不适，及时告知医护。</td>
+            </tr>
+            <tr>
+              <td><strong>软组织内封闭术</strong></td>
+              <td>针对肌腱、滑囊、关节囊、痛点等部位进行局部治疗，减轻炎症和疼痛。</td>
+              <td>治疗前主动告知糖尿病、抗凝药使用、药物过敏史；治疗后保持局部清洁干燥。</td>
+            </tr>
+            <tr>
+              <td><strong>体外发散式冲击波</strong></td>
+              <td>通过体外声波刺激疼痛区域，促进局部血流和组织修复。</td>
+              <td>后可有短暂酸胀或轻微皮肤发红；当日避免反复揉按治疗区域。</td>
+            </tr>
+            <tr>
+              <td><strong>康复训练</strong></td>
+              <td>恢复肩关节活动度、改善肩胛控制和肌肉力量，减少复发。</td>
+              <td>要循序渐进，以<span style="font-weight: bold;">“牵拉感、轻度酸胀可接受，尖锐痛应停止”</span>为原则。</td>
+            </tr>
+            <tr>
+              <td><strong>周围神经脉冲射频</strong></td>
+              <td>适用于部分顽固性、神经源性疼痛，通过脉冲电场调控神经疼痛信号。</td>
+              <td>术后观察穿刺点，避免剧烈活动；按医嘱复诊，切勿自行减停药物。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 四、康复训练 -->
+    <div class="card">
+      <h2>四、康复训练：疼痛缓解后的关键</h2>
+      <ul class="bullet-list">
+        <li><strong>早期阶段：</strong>以减痛和保持轻柔活动为主，可在指导下进行钟摆运动、爬墙训练、辅助上举等。</li>
+        <li><strong>中期阶段：</strong>疼痛减轻后逐渐增加肩胛稳定训练、肩袖力量训练和颈肩姿势训练。</li>
+        <li><strong>核心忌讳：</strong>训练过程中<span class="danger-text">不要猛拉、硬掰</span>，不要追求“一次练开”；过度训练可能加重炎症和疼痛。</li>
+        <li><strong>自我记录：</strong>可记录每天疼痛评分、夜间睡眠、上举角度和日常动作，复诊时反馈给医生。</li>
+      </ul>
+    </div>
+
+    <!-- 五、治疗后日常注意事项 -->
+    <div class="card">
+      <h2>五、治疗后日常注意事项</h2>
+      <div class="compare-container">
+        <div class="compare-box do">
+          <div class="compare-title">建议这样做</div>
+          <ul style="list-style: none;">
+            <li>按医嘱用药和复诊，不擅自停药。</li>
+            <li>保持肩颈部位适度活动，避免长期完全不动。</li>
+            <li>睡觉时避免压迫患肩，可用枕头托住上肢。</li>
+            <li>电脑、手机使用时注意抬头、放松肩颈。</li>
+          </ul>
+        </div>
+        <div class="compare-box dont">
+          <div class="compare-title">避免这样做</div>
+          <ul style="list-style: none;">
+            <li>短期疼痛缓解后立即搬重物、反复抬高手臂。</li>
+            <li>自行按摩、热敷或贴膏药在穿刺部位。</li>
+            <li>忍痛强练、猛拉硬掰肩关节。</li>
+            <li>未告知医生的情况下叠加止痛药或自行购买激素类药。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 六、异常情况警示卡片 -->
+    <div class="alert-card">
+      <h2>⚠️ 出现这些情况，请及时告知医护人员</h2>
+      <ul class="alert-list">
+        <li>疼痛突然明显加重，或出现持续夜间痛、无法入睡。</li>
+        <li>上肢麻木、无力<span class="danger-text">进行性加重</span>，握物不稳，或出现大小便异常。</li>
+        <li>治疗部位明显红肿、渗液、发热、皮疹或过敏表现。</li>
+        <li>肩关节外伤后疼痛剧烈、明显畸形或不能抬臂。</li>
+        <li><span class="danger-text" style="font-size: 1rem;">出现胸闷、胸痛、呼吸困难、出冷汗</span>等症状，应立即告知并排查心肺急症。</li>
+      </ul>
+    </div>
+
+    <!-- 页脚提示 -->
+    <div class="footer">
+      <p style="text-align: left; margin-bottom: 8px;">💡 温馨提示：本资料用于患者健康宣教，不能替代医生面诊和个体化治疗方案。具体治疗方式、药物使用、术后护理和康复训练强度，请以主管医生、护士和康复治疗师的当日指导为准。</p>
+      <p style="margin-top: 6px; font-weight: 600; color: var(--primary-color);">疼痛科患者宣教</p>
+    </div>
+
+  </div>
+</body>
+
+</html>

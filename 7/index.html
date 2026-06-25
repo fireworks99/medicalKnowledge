@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>磁共振检查影像指南</title>
+  <style>
+    :root {
+      --primary-color: #0d8a72;
+      --primary-light: #f0fdf4;
+      --success-color: #16a34a;
+      --success-light: #f0fdf4;
+      --warning-color: #ea580c;
+      --warning-light: #fff7ed;
+      --danger-color: #dc2626;
+      --danger-light: #fef2f2;
+      --text-color: #334155;
+      --text-light: #64748b;
+      --bg-color: #f7fafc;
+      --card-bg: #ffffff;
+      --border-radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* 头部页眉 */
+    .header {
+      background: linear-gradient(135deg, #14b8a6, #0d8a72);
+      color: white;
+      padding: 32px 24px;
+      border-radius: var(--border-radius);
+      margin-bottom: 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .header .dept-name {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .header .subtitle {
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.2);
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      line-height: 1.4;
+    }
+
+    /* 通用卡片布局 */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 检查流程数字化路标 */
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .process-node {
+      background: #f1f5f9;
+      border-left: 4px solid var(--primary-color);
+      padding: 14px;
+      border-radius: 0 8px 8px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .node-num {
+      background: var(--primary-color);
+      color: white;
+      font-weight: bold;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 0.85rem;
+    }
+
+    /* 现场指引图排版 */
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .photo-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: auto;
+      max-height: 240px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .photo-item img:hover {
+      transform: scale(1.01);
+    }
+
+    .photo-caption {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    /* 绝对禁止红牌卡片 */
+    .danger-card {
+      background: var(--danger-light);
+      border: 1px solid #fecaca;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .danger-card h2 {
+      color: var(--danger-color);
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #fecaca;
+      padding-bottom: 8px;
+    }
+
+    /* 警告与通知卡片 */
+    .warning-card {
+      background: var(--warning-light);
+      border-left: 5px solid var(--warning-color);
+      padding: 16px;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      margin-bottom: 20px;
+    }
+
+    .warning-card h3 {
+      color: #c2410c;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    /* 列表样式 */
+    ul {
+      list-style: none;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      color: var(--primary-color);
+      position: absolute;
+      left: 4px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      top: -2px;
+    }
+
+    .danger-list li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .danger-list li::before {
+      content: "❌";
+      position: absolute;
+      left: 0;
+      font-size: 0.85rem;
+      top: 2px;
+    }
+
+    .check-list li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .check-list li::before {
+      content: "🔲";
+      position: absolute;
+      left: 0;
+      font-size: 0.85rem;
+      top: 1px;
+    }
+
+    /* 误区辨析双列直达 */
+    .qa-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .qa-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .qa-wrong {
+      color: var(--danger-color);
+      font-weight: bold;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .qa-right {
+      color: var(--success-color);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    /* 重点高亮文本 */
+    .highlight-red {
+      color: var(--danger-color);
+      font-weight: bold;
+    }
+
+    /* 页脚 */
+    .footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 32px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 16px;
+    }
+
+    /* 响应式媒体查询 */
+    @media (min-width: 768px) {
+      .container {
+        padding: 24px;
+      }
+
+      .header {
+        padding: 40px 32px;
+      }
+
+      .header h1 {
+        font-size: 1.9rem;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .photo-gallery {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="./viewer.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- 医院页眉 -->
+    <div class="header">
+      <div class="dept-name">大连医科大学附属第一医院 <br> 金普院区 · 疼痛科病房</div>
+      <h1>磁共振检查影像指南</h1>
+      <div class="subtitle">检查流程、预约位置、检查前准备<br>与安全须知</div>
+    </div>
+
+    <!-- 流程导航 -->
+    <div class="card">
+      <h2>🗺️ 第一阶段：检查与打印流程</h2>
+      <div class="process-grid">
+        <div class="process-node">
+          <span class="node-num">01</span>
+          <div>
+            <p style="font-weight: 600; font-size: 0.95rem;">2楼缴费完成后</p>
+          </div>
+        </div>
+        <div class="process-node">
+          <span class="node-num">02</span>
+          <div>
+            <p style="font-weight: 600; font-size: 0.95rem;">平扫磁共振请去1楼B区6号窗口先预约</p>
+          </div>
+        </div>
+        <div class="process-node">
+          <span class="node-num">03</span>
+          <div>
+            <p style="font-weight: 600; font-size: 0.95rem;">按约定时间，平扫磁共振去负1楼B区医学影像中心的磁共振扫描室</p>
+          </div>
+        </div>
+        <div class="process-node">
+          <span class="node-num">04</span>
+          <div>
+            <p style="font-weight: 600; font-size: 0.95rem;">打印胶片和报告请去1楼B区自助机进行打印</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 实景图引路 -->
+      <div id="photo-gallery">
+        <div class="photo-item">
+          <img src="./1.png" alt="1楼B区6号窗口先预约">
+          <div class="photo-caption">📍 1楼B区6号窗口先预约</div>
+        </div>
+        <div class="photo-item">
+          <img src="./2.png" alt="负1楼B区医学影像中心">
+          <div class="photo-caption">📍 负1楼B区医学影像中心</div>
+        </div>
+        <div class="photo-item">
+          <img src="./3.png" alt="1楼B区自助机进行打印">
+          <div class="photo-caption">📍 1楼B区自助机进行打印</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 一、什么是核磁共振 -->
+    <div class="card">
+      <h2>磁共振（MRI）检查前必读</h2>
+      <h3>一、什么是核磁共振？</h3>
+      <p style="font-size: 0.95rem; color: var(--text-color); margin-top: 8px;">
+        MRI 依靠<span style="font-weight: 600; color: var(--primary-color);">磁场 + 无线电波</span>成像，<span
+          style="font-weight: bold; color: var(--success-color);">无X射线、没有辐射</span>，适合查颈椎、腰椎、脊髓、神经、肌肉软组织、关节、带状疱疹神经水肿、梨状肌、肩袖损伤等疼痛科常见病变；体内有金属异物、植入器械者不能随意做。
+      </p>
+    </div>
+
+    <!-- 二、绝对禁止进入核磁室的人群（红牌） -->
+    <div class="danger-card">
+      <h2>🛑 二、绝对禁止进入核磁室的人群（重中之重）</h2>
+      <ul class="danger-list" style="color: #991b1b; font-weight: 500;">
+        <li>心脏起搏器、植入式心律转复除颤器（ICD）、心脏再同步化装置。</li>
+        <li>颅内动脉瘤金属夹、脑深部电刺激仪。</li>
+        <li>人工耳蜗、耳内金属植入装置。</li>
+        <li>眼球内金属异物、既往金属眼外伤史。</li>
+        <li>体内遗留子弹、金属弹片。</li>
+        <li>部分老式骨科钢板、钢钉（2000 年前非核磁兼容材质）。</li>
+        <li>孕期前 3 个月谨慎，非必要不做；孕中晚期需医生评估。</li>
+      </ul>
+      <div
+        style="background: #fff; padding: 10px; border-radius: 6px; margin-top: 12px; font-size: 0.9rem; color: var(--text-color); border: 1px dashed #fca5a5;">
+        💡 <span
+          style="font-weight: bold; color: var(--success-color);">提示：</span>种植牙、烤瓷牙、钛合金钢板、新型脊柱钉棒系统大多核磁安全，提前告知医生即可。
+      </div>
+    </div>
+
+    <!-- 三、检查前必须摘掉/禁止带入物品 -->
+    <div class="card">
+      <h2>🧼 三、检查前必须摘掉 / 禁止带入机房物品</h2>
+      <p style="font-weight: bold; color: var(--warning-color); margin-bottom: 12px;">⚠️ 全身所有金属全部取出：</p>
+      <ul class="check-list">
+        <li><strong>首饰：</strong>项链、耳环、戒指、手镯、发卡、金属发夹。</li>
+        <li><strong>穿戴：</strong>金属内衣扣、钢圈内衣、皮带扣、金属拉链、带铆钉裤子。</li>
+        <li><strong>随身物品：</strong>手机、钥匙、硬币、银行卡、手表、耳机、助听器。</li>
+        <li><strong>医疗物品：</strong>胰岛素泵、膏药（含金属磁粉）、艾灸贴、体外镇痛电极片。</li>
+        <li><strong>其他：</strong>眼镜（金属框）、假牙能取下则取下。</li>
+      </ul>
+      <p
+        style="font-size: 0.9rem; background: var(--primary-light); padding: 10px; border-radius: 6px; margin-top: 10px; color: var(--primary-color);">
+        👚 <strong>衣物建议：</strong>穿纯棉无金属扣子、无印花烫金的宽松家居服，医院也可提供检查专用病号服。
+      </p>
+    </div>
+
+    <!-- 四、有以下植入物，务必提前告知 -->
+    <div class="warning-card">
+      <h3>⚠️ 四、有以下植入物，务必提前告知医生评估</h3>
+      <ul class="bullet-list" style="color: #c2410c;">
+        <li>钛合金人工关节、脊柱内固定钉棒、钢板。</li>
+        <li>避孕环、皮下埋植避孕针。</li>
+        <li>乳腺假体、血管支架、滤器。</li>
+        <li>神经刺激器、镇痛泵植入装置。</li>
+        <li>纹身（大面积深色纹身含金属颜料，少数人检查中局部发热瘙痒）。</li>
+      </ul>
+    </div>
+
+    <!-- 五、增强核磁共振专用须知 -->
+    <div class="card">
+      <h2>💉 五、增强核磁共振专用须知（需打造影剂）</h2>
+      <ul class="bullet-list">
+        <li>有严重肾功能不全、肾病透析、严重过敏体质、哮喘重度发作提前说明，可能无法做增强；</li>
+        <li>既往碘造影剂、药物、海鲜严重过敏史必须主动告知；</li>
+        <li>检查前 4 小时可清淡饮食，无需严格空腹；糖尿病服用二甲双胍患者，需遵医嘱停药 48 小时；</li>
+        <li>增强结束后多喝水，24 小时内促进造影剂代谢排出。</li>
+      </ul>
+    </div>
+
+    <!-- 六、检查过程体验与配合要点 -->
+    <div class="card">
+      <h2>🎧 六、检查过程体验与配合要点</h2>
+      <ul class="bullet-list">
+        <li><strong>噪音巨大：</strong>机器会出现咚咚、震动、敲击声响，属于正常现象，机房提供隔音耳塞 / 耳机，无需恐慌；</li>
+        <li><strong>空间密闭：</strong>核磁舱管道狭长，有幽闭恐惧症、心慌胸闷提前跟护士说，可申请镇静药物、短序列扫描；</li>
+        <li><strong>全程保持静止：</strong>头部 / 身体轻微晃动会造成图像模糊，需要重拍，单次序列 3–8 分钟，整套检查 10–30 分钟；</li>
+        <li><span class="highlight-red">检查中如有心慌、发热、头晕、皮肤刺痛，立即举手示意停止检查。</span></li>
+      </ul>
+    </div>
+
+    <!-- 七、特殊人群注意事项 -->
+    <div class="card">
+      <h2>👥 七、特殊人群注意事项</h2>
+      <ul class="bullet-list">
+        <li><strong>老年人：</strong>行动不便需家属陪同；老年痴呆、无法配合肢体静止者，需临床医生评估镇静方案；</li>
+        <li><strong>儿童：</strong>多数需口服镇静药熟睡后完成检查，检查前遵医嘱控制进食饮水；</li>
+        <li><strong>幽闭恐惧患者：</strong>检查前不要空腹，可深呼吸放松，必要时临床开具短效镇静；</li>
+        <li><strong>疼痛患者：</strong>（带状疱疹神经痛、颈肩腰腿痛）检查前按医嘱服用常规止痛药，避免体位牵拉诱发剧痛无法坚持。</li>
+      </ul>
+    </div>
+
+    <!-- 八、检查前后饮食、作息、用药 -->
+    <div class="card">
+      <h2>🍽️ 八、检查前后饮食、作息、用药</h2>
+      <ul class="bullet-list">
+        <li><strong>普通平扫 MRI：</strong>无需空腹，正常吃饭喝水；</li>
+        <li><strong>特殊部位：</strong>腹部、胆道核磁需要空腹 6 小时以上；</li>
+        <li><strong>常规药物：</strong>常规降压、降糖、止痛、营养神经药物正常服用，不受磁场影响；</li>
+        <li><strong>留观时间：</strong>检查结束无不适可立刻离开，增强患者观察 20 分钟无过敏反应再走。</li>
+      </ul>
+    </div>
+
+    <!-- 九、常见误区科普解答 -->
+    <div class="card">
+      <h2>🤔 九、常见误区科普解答</h2>
+      <div class="qa-container">
+        <div class="qa-block">
+          <div class="qa-wrong">❌ 误区：“体内有钢板一定不能做核磁”</div>
+          <div class="qa-right">💡 纠正：近 20 年临床植入的钛合金内固定全部兼容核磁，只有早年普通不锈钢异物存在风险，带手术记录单可快速判断。</div>
+        </div>
+        <div class="qa-block">
+          <div class="qa-wrong">❌ 误区：核磁共振有辐射，做多了伤身</div>
+          <div class="qa-right">💡 纠正：无电离辐射，孕妇、老人、儿童必要时可多次复查。</div>
+        </div>
+        <div class="qa-block">
+          <div class="qa-wrong">❌ 误区：膏药贴没关系</div>
+          <div class="qa-right">💡 纠正：活血化瘀膏药多含铁粉、磁粉，进入磁场会发热灼伤皮肤，必须全部撕掉。</div>
+        </div>
+        <div class="qa-block">
+          <div class="qa-wrong">❌ 误区：带手机放包里不拿出来没事</div>
+          <div class="qa-right">💡 纠正：强磁场会吸附金属物体高速撞击机器，同时彻底损坏手机、消磁银行卡。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+      <p style="margin-top: 6px; font-weight: 600; color: var(--primary-color);">疼痛科患者宣教</p>
+    </div>
+
+  </div>
+
+  <script src="./viewer.min.js"></script>
+  <script>
+    new Viewer(document.getElementById('photo-gallery'));
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>周围神经脉冲射频术术后须知</title>
+  <style>
+    :root {
+      --primary-color: #0d8a72;
+      --primary-light: #f0fdf4;
+      --secondary-color: #1e293b;
+      --bg-color: #f7fafc;
+      --card-bg: #ffffff;
+      --text-color: #334155;
+      --text-light: #64748b;
+      --border-radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* 头部页眉 */
+    .header {
+      background: linear-gradient(135deg, #14b8a6, #0d8a72);
+      color: white;
+      padding: 32px 24px;
+      border-radius: var(--border-radius);
+      margin-bottom: 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .header .dept-name {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .header h1 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .header .subtitle {
+      font-size: 0.95rem;
+      background: rgba(255, 255, 255, 0.2);
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      text-align: left;
+    }
+
+    /* 医疗示意图区域 */
+    .image-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 16px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .image-caption {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-top: 8px;
+      text-align: left;
+      text-indent:2em;
+    }
+
+    /* 通用卡片布局 */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* 列表样式 */
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: var(--text-color);
+    }
+
+    .info-list li::before {
+      content: "✓";
+      color: var(--primary-color);
+      position: absolute;
+      left: 4px;
+      font-weight: bold;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding-left: 4px;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      color: var(--primary-color);
+      position: absolute;
+      left: 4px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      top: -2px;
+    }
+
+    /* 警示卡片样式 */
+    .alert-card {
+      background: #fff5f5;
+      border: 1px solid #fee2e2;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .alert-card h2 {
+      color: #e11d48;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #fee2e2;
+      padding-bottom: 10px;
+    }
+
+    .alert-list {
+      list-style: none;
+    }
+
+    .alert-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      color: #475569;
+    }
+
+    .alert-list li::before {
+      content: "⚠️";
+      position: absolute;
+      left: 0;
+      font-size: 0.9rem;
+      top: 2px;
+    }
+
+    .danger-text {
+      color: #e11d48;
+      font-weight: 600;
+    }
+
+    .highlight-box {
+      background: #f8fafc;
+      border-left: 4px solid #cbd5e1;
+      padding: 12px 16px;
+      margin-top: 10px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      color: var(--text-color);
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 32px;
+      padding: 0 16px;
+      line-height: 1.6;
+    }
+
+    /* 响应式媒体查询 */
+    @media (min-width: 768px) {
+      .container {
+        padding: 24px;
+      }
+
+      .header {
+        padding: 40px 32px;
+      }
+
+      .header h1 {
+        font-size: 1.8rem;
+      }
+
+      .card {
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- 页头 -->
+    <div class="header">
+      <div class="dept-name">大连医科大学附属第一医院 <br> 金普院区 · 疼痛科病房</div>
+      <h1>周围神经脉冲射频术<br>术后须知</h1>
+    </div>
+
+    <!-- 治疗过程示意图 -->
+    <div class="image-card">
+      <div class="image-caption">周围神经脉冲射频术是一种通过调节神经功能来止痛的微创治疗。由于它并非毁损神经，术后通常没有严重的后遗症，恢复也较快。但为了确保效果和安全，术后有一些细节需要您特别留意。</div>
+      <img src="./1.png" alt="" class="preview">
+    </div>
+
+    
+
+    <!-- 📆 术后当天 -->
+    <div class="card">
+      <h2>🛏️ 术后当天：留观与休息</h2>
+      <ul class="info-list">
+        <li><strong>院内留观：</strong>术后需要在医院观察1-2小时，无特殊不适即可离院。</li>
+        <li><strong>避免驾驶：</strong>如果术中使用了镇静药物，术后24小时内请<span class="danger-text">绝对不要驾车、饮酒或签署重要文件</span>。</li>
+        <li><strong>正常饮食：</strong>返回病房或回家后，如无恶心等不适，即可恢复正常饮食。</li>
+      </ul>
+    </div>
+
+    <!-- 🩹 穿刺点护理 -->
+    <div class="card">
+      <h2>🩹 穿刺点护理：保持干燥</h2>
+      <ul class="info-list">
+        <li><strong>敷料处理：</strong>穿刺点仅有一个针眼大小。贴在上面的无菌敷料，通常24小时后可以自行取下。</li>
+        <li><strong>防水与淋浴：</strong>24小时内保持注射部位清洁干燥、<span class="danger-text">避免进水</span>。</li>
+        <li><strong>观察异常：</strong>注意观察穿刺点有无红肿、渗液、异常疼痛或发热等情况。</li>
+      </ul>
+    </div>
+
+    <!-- 😣 疼痛管理 -->
+    <div class="card">
+      <h2>😣 疼痛管理：可能会暂时加重</h2>
+      <ul class="bullet-list">
+        <li><strong>疼痛“反跳”现象：</strong>术后几天甚至几周内，原来的疼痛处可能会出现<span style="font-weight: 600;">暂时性加重</span>，这是正常现象，并不代表治疗失败。</li>
+        <li><strong>如何应对：</strong>如果疼痛影响休息，可以按医嘱服用常规止痛药（如对乙酰氨基酚或布洛芬）。</li>
+      </ul>
+    </div>
+
+    <!-- 🚶 活动与康复 -->
+    <div class="card">
+      <h2>🚶 活动与康复：循序渐进</h2>
+      <ul class="info-list">
+        <li><strong>何时能活动：</strong>
+          <div style="padding: 4px 0 4px 12px; font-size: 0.9rem; color: var(--text-light);">
+            • 一般术后平卧休息2小时后即可下地行走。<br>
+            • 术后第2天即可恢复大部分日常活动。<br>
+            • 建议在72小时后再恢复游泳、健身等体育锻炼。
+          </div>
+        </li>
+        <li><strong>康复建议：</strong>建议保持适度活动，进行一些<span style="color: var(--primary-color); font-weight: 600;">轻柔的拉伸</span>，这有助于康复。</li>
+      </ul>
+    </div>
+
+    <!-- 💊 药物与饮食 -->
+    <div class="card">
+      <h2>💊 药物与饮食</h2>
+      <ul class="bullet-list">
+        <li><strong>遵医嘱服药：</strong>医生可能会开一些营养神经（如甲钴胺）或消炎镇痛的药物，请按时按量服用。</li>
+        <li><strong>正常饮食：</strong>恢复正常饮食即可，<span style="font-weight: 600;">无需特殊忌口</span>。</li>
+      </ul>
+    </div>
+
+    <!-- ⚠️ 需要警惕的信号 -->
+    <div class="alert-card">
+      <h2>⚠️ 需要警惕的信号（及时就医）</h2>
+      <p style="font-size: 0.9rem; color: #475569; margin-bottom: 12px; font-weight: 600;">如果出现以下任何一种情况，请立即联系医院或前往最近的急诊科：</p>
+      <ul class="alert-list">
+        <li>穿刺点有<span class="danger-text">黄色分泌物、异常红、肿、热、痛</span>。</li>
+        <li>出现<span class="danger-text">发烧</span>（体温升高）。</li>
+        <li><span class="danger-text">剧烈头痛</span>或穿刺部位无法忍受的剧痛。</li>
+        <li>感到恶心、呕吐或其他严重不适。</li>
+        <li><span style="font-weight: 600;">（针对腰、腿部治疗者）</span>腿部出现严重或逐渐加重的<span class="danger-text">无力、麻木</span>。</li>
+      </ul>
+    </div>
+
+    <!-- 📅 效果与随访 -->
+    <div class="card">
+      <h2>📅 效果与随访</h2>
+      <ul class="info-list">
+        <li><strong>起效时间：</strong>脉冲射频的止痛效果并非立竿见影，通常需要<span style="font-weight: 600;">3-4周甚至6-8周</span>才能达到最佳效果。</li>
+        <li><strong>效果时长：</strong>效果持续时间因人而异，可能从6个月到数年不等。如果疼痛复发，可以重复进行治疗。</li>
+        <li><strong>定期随访：</strong>请遵照医嘱，按时返回医院复查。</li>
+      </ul>
+    </div>
+
+    <!-- 页脚提示 -->
+    <div class="footer">
+      <p>💡 本须知供患者术后参考，如有突发不适请及时与主管医生团队联系。</p>
+      <p style="margin-top: 6px; font-weight: 600; color: var(--primary-color);">疼痛科患者宣教</p>
+    </div>
+
+  </div>
+</body>
+
+</html>

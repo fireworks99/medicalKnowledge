@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>便秘恶心等不良反应应对指南</title>
+  <style>
+    :root {
+      --primary-color: #0d8a72;
+      --primary-light: #f0fdf4;
+      --success-color: #16a34a;
+      --success-light: #f0fdf4;
+      --warning-color: #ea580c;
+      --warning-light: #fff7ed;
+      --danger-color: #dc2626;
+      --danger-light: #fef2f2;
+      --text-color: #334155;
+      --text-light: #64748b;
+      --bg-color: #f7fafc;
+      --card-bg: #ffffff;
+      --border-radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* 头部页眉 */
+    .header {
+      background: linear-gradient(135deg, #14b8a6, #0d8a72);
+      color: white;
+      padding: 32px 24px;
+      border-radius: var(--border-radius);
+      margin-bottom: 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .header .dept-name {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .header .subtitle {
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.2);
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      line-height: 1.4;
+    }
+
+    /* 温馨提示导语卡片 */
+    .intro-card {
+      background: var(--primary-light);
+      border-left: 5px solid var(--primary-color);
+      padding: 18px;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .intro-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    /* 通用卡片布局 */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 警告与通知卡片 */
+    .warning-card {
+      background: var(--warning-light);
+      border-left: 5px solid var(--warning-color);
+      padding: 16px;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      margin-bottom: 20px;
+    }
+
+    /* 绝对紧急红牌卡片 */
+    .danger-card {
+      background: var(--danger-light);
+      border: 1px solid #fecaca;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .danger-card h2 {
+      color: var(--danger-color);
+      font-size: 1.2rem;
+      margin-bottom: 14px;
+      border-bottom: 2px solid #fecaca;
+      padding-bottom: 8px;
+    }
+
+    /* 对照分块布局（用于便秘与常见不适表格的数智化转换） */
+    .block-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .info-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .block-title-warn {
+      color: var(--warning-color);
+      font-weight: bold;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .block-title-primary {
+      color: var(--primary-color);
+      font-weight: bold;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .block-content {
+      color: var(--text-color);
+      font-size: 0.95rem;
+    }
+
+    /* 列表样式 */
+    ul {
+      list-style: none;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      color: var(--primary-color);
+      position: absolute;
+      left: 4px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      top: -2px;
+    }
+
+    .danger-list li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .danger-list li::before {
+      content: "🚨";
+      position: absolute;
+      left: 0;
+      font-size: 0.9rem;
+      top: 1px;
+    }
+
+    /* 重点高亮 */
+    .highlight-red {
+      color: var(--danger-color);
+      font-weight: bold;
+    }
+
+    /* 页脚 */
+    .footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 32px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 16px;
+    }
+
+    .slogan {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: bold;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      border: 1px dashed #cbd5e1;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <div class="dept-name">大连医科大学附属第一医院 <br> 金普院区 · 疼痛科病房</div>
+      <h1>便秘、恶心等不良反应<br>该如何应对？</h1>
+      <div class="subtitle">疼痛治疗期间常见不适管理小指南</div>
+    </div>
+
+    <div class="intro-card">
+      <h3>💡 先别慌：这些不适很常见，但不要“硬扛”，也不要自行停药！</h3>
+      <p style="font-size: 0.95rem; color: #1e293b;">
+        便秘、恶心、呕吐、腹胀、头晕、嗜睡等，可能与<span style="font-weight: 600;">疼痛本身、活动减少、饮食饮水减少、基础胃肠功能弱、焦虑紧张、麻醉或介入治疗后反应</span>，以及<span style="font-weight: 600; color: var(--primary-color);">止痛药、神经病理性疼痛药</span>等有关。请及时告诉医生和护士，医护人员会根据情况评估原因并调整处理方案。
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>🧻 一、便秘：先调整生活方式，必要时规范用药</h2>
+      <div class="block-container">
+        
+        <div class="info-block">
+          <div class="block-title-warn">🔍 常见表现</div>
+          <div class="block-content">排便次数减少、大便干硬、排便费力、腹胀、排便不尽。</div>
+          <div class="block-title-primary" style="margin-top: 8px;">✨ 应对方法</div>
+          <div class="block-content">在医生允许的情况下适量饮水；逐步增加蔬菜、水果、全谷物等膳食纤维；身体条件允许时尽早下床活动；养成固定时间排便的习惯。</div>
+        </div>
+
+        <div class="info-block">
+          <div class="block-title-warn">⚠️ 高危提示</div>
+          <div class="block-content">使用阿片类止痛药、活动少、进食少或本身有慢性便秘者，更容易发生便秘。</div>
+          <div class="block-title-primary" style="margin-top: 8px;">✨ 应对方法</div>
+          <div class="block-content">正在使用阿片类止痛药的患者，应<span class="highlight-red">主动报告</span>排便情况。必要时医生会给予乳果糖、聚乙二醇、番泻叶、开塞露等通便药物或其他方案。</div>
+        </div>
+
+      </div>
+      
+      <div style="background: #fff7ed; padding: 10px; border-radius: 6px; margin-top: 12px; font-size: 0.9rem; color: #c2410c; border: 1px dashed #fed7aa; font-weight: 500;">
+        🛑 警告：不要自行长期、大量使用泻药。如果便秘超过 3 天仍未缓解，或伴明显腹胀、腹痛、呕吐、不能排气、便血或黑便，请立即告知医护人员。
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🤢 二、恶心、呕吐：少量多次，及时报告</h2>
+      <ul class="bullet-list">
+        <li><strong>调整饮食：</strong>少量多餐，选择清淡、易消化食物，暂时避免油腻、辛辣、过甜和气味较重的食物。</li>
+        <li><strong>合理饮水：</strong>少量多次饮水，呕吐后可先小口补液；若医生限制饮水量，请按医嘱执行。</li>
+        <li><strong>休养体位：</strong>进食后避免立即平躺，可采取半卧位休息；保持病房空气流通，减少强烈气味刺激。</li>
+        <li><strong>切勿乱用药：</strong><span class="highlight-red">不要自行叠加止吐药或胃药。</span>医生会根据病因选择止吐、护胃、促胃肠动力或调整镇痛方案。</li>
+        <li><strong>及时告知：</strong>若恶心、呕吐持续不缓解，影响进食饮水，或伴头晕、尿少、明显乏力、腹痛、呕血等情况，请及时告知医护人员。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📋 三、其他常见不适应对清单</h2>
+      <div class="block-container">
+
+        <div class="info-block">
+          <div class="block-title-primary">🧠 头晕、嗜睡</div>
+          <p class="block-content" style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 4px;">可能原因：止痛药、神经病理性疼痛药、睡眠不足或体位改变</p>
+          <div class="block-content" style="font-weight: 500; color: #1e293b;">💡 患者怎么做：起床动作放慢，先坐稳再站起；不要独自下床，防止跌倒；及时告知护士。</div>
+        </div>
+
+        <div class="info-block">
+          <div class="block-title-primary">👄 口干、食欲差</div>
+          <p class="block-content" style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 4px;">可能原因：药物反应、进食少、疼痛或焦虑</p>
+          <div class="block-content" style="font-weight: 500; color: #1e293b;">💡 患者怎么做：少量多次饮水，保持口腔清洁；选择温软清淡饮食；必要时请医生评估。</div>
+        </div>
+
+        <div class="info-block">
+          <div class="block-title-primary">🩹 瘙痒、皮疹</div>
+          <p class="block-content" style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 4px;">可能原因：药物反应或原有皮肤问题</p>
+          <div class="block-content" style="font-weight: 500; color: #1e293b;">💡 患者怎么做：不要抓挠或自行外用药；若出现皮疹增多、面唇肿胀、胸闷或呼吸困难，应<span class="highlight-red">立即呼叫</span>医护人员。</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="danger-card">
+      <h2>🛑 四、请及时联系医护人员的情况（出现以下情况，请不要等待）</h2>
+      <ul class="danger-list" style="color: #991b1b; font-weight: 500;">
+        <li>便秘超过 3 天未缓解，或出现明显腹胀、腹痛、呕吐、不能排气。</li>
+        <li>恶心、呕吐频繁，无法进食饮水，或出现口干、尿少、头晕、乏力等脱水表现。</li>
+        <li>出现便血、黑便、呕血、剧烈腹痛、发热。</li>
+        <li>出现严重嗜睡、意识模糊、胸闷、呼吸困难、面唇肿胀或全身皮疹。</li>
+        <li>介入治疗后出现穿刺部位明显红肿、渗液、持续发热或疼痛明显加重。</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <div class="slogan">📢 记住一句话：不适及时说，药物不乱停，处理听医嘱。</div>
+      <p style="font-size: 0.8rem; color: var(--text-light); margin-bottom: 8px; line-height: 1.4; padding: 0 10px; text-align: left;">
+        💡 温馨提示：本资料用于患者健康宣教，不能替代医生诊疗。具体饮食、活动、用药和复查安排，请以主管医生和护士的当日指导为准。
+      </p>
+      <p style="margin-top: 6px; font-weight: 600; color: var(--primary-color);">疼痛科患者宣教</p>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

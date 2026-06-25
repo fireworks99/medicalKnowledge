@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>带状疱疹“火烧痛”？别慌！“灭火”攻略来啦</title>
+    <style>
+        :root {
+            --primary-color: #0d8a72;
+            --secondary-color: #2b6cb0;
+            --accent-color: #dd6b20;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+            --text-light: #718096;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        /* 头部页眉 */
+        .header {
+            background: linear-gradient(135deg, #14b8a6, #0d8a72);
+            color: white;
+            padding: 32px 24px;
+            border-radius: var(--border-radius);
+            margin-bottom: 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .header .hospital {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 20px;
+        }
+
+        /* 核心摘要卡片 */
+        .summary-card {
+            background: #f0fdf4;
+            border-left: 5px solid #16a34a;
+            padding: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .summary-card h3 {
+            color: #15803d;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .summary-card ul {
+            list-style: none;
+        }
+
+        .summary-card li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .summary-card li::before {
+            content: "•";
+            color: #16a34a;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            top: -2px;
+        }
+
+        /* 通用卡片布局 */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 发展阶段步骤条 */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: #cbd5e1;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-badge {
+            position: absolute;
+            left: -20px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 2px solid white;
+        }
+
+        .timeline-title {
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 6px;
+            font-size: 1.05rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        /* 列表样式 */
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .info-list li::before {
+            content: "✓";
+            color: var(--primary-color);
+            position: absolute;
+            left: 4px;
+            font-weight: bold;
+        }
+
+        /* 警示卡片 */
+        .alert-card {
+            background: #fffaf0;
+            border: 1px solid #feebc8;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .alert-card h2 {
+            color: #c05621;
+            border-bottom-color: #feebc8;
+        }
+
+        .alert-list li::before {
+            content: "⚠️";
+            position: absolute;
+            left: 0;
+        }
+
+        .alert-list li {
+            padding-left: 24px;
+            color: #744210;
+            font-weight: 500;
+        }
+
+        /* 响应式表格 */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 12px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: #334155;
+            font-weight: 600;
+            padding: 12px;
+            border-bottom: 2px solid #e2e8f0;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #edf2f7;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge-warning {
+            background-color: #fff5f5;
+            color: #e53e3e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border: 1px solid #fed7d7;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        /* 底部温馨提示 */
+        .footer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 32px;
+            padding: 0 16px;
+        }
+
+        /* 强调文字 */
+        .danger-text {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+
+        /* PC端媒体查询优化 */
+        @media (min-width: 768px) {
+            .container {
+                padding: 24px;
+            }
+
+            .header {
+                padding: 48px 32px;
+            }
+
+            .header h1 {
+                font-size: 2.3rem;
+            }
+
+            th,
+            td {
+                padding: 16px;
+            }
+
+            .card {
+                padding: 32px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="./viewer.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <div class="hospital">大连医科大学附属第一医院 <br> 金普院区 · 疼痛科病房</div>
+            <h1>带状疱疹“火烧痛”？<br> 别慌! 查看“灭火”攻略</h1>
+            <div class="subtitle">早诊断、早治疗、持续管理</div>
+        </div>
+
+        <img src="./1.png" alt="" class="preview">
+
+        <div class="summary-card">
+            <h3>💡 重点先知道</h3>
+            <ul>
+                <li><strong>尽早治疗：</strong>带状疱疹越早规范治疗，越有助于减轻疼痛、降低带状疱疹后神经痛风险。</li>
+                <li><strong>皮肤护理：</strong>皮疹期要保持清洁干燥，避免抓挠和摩擦。</li>
+                <li><strong>术后注意：</strong>行周围神经脉冲射频术后，要注意休息、观察穿刺部位并按医嘱复诊。</li>
+                <li><strong>严遵医嘱：</strong>所有药物均应按医嘱服用，<span class="danger-text">严禁</span>自行加量、减量或停药。</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>一、什么是带状疱疹“火烧痛”？</h2>
+            <p style="margin-bottom: 12px;">
+                带状疱疹是<strong>水痘-带状疱疹病毒</strong>再次活跃引起的疾病，常表现为<strong>单侧成簇疱疹</strong>，并伴有灼烧样、针刺样或电击样疼痛。</p>
+            <p style="margin-bottom: 12px;">部分患者在皮疹消退后仍可持续疼痛，这种情况称为<strong>带状疱疹后神经痛</strong>。</p>
+            <p class="danger-text">一旦出现可疑皮疹或明显疼痛，应尽早到医院就诊，越早规范治疗，效果通常越好！</p>
+        </div>
+
+        <div class="card">
+            <h2>二、带状疱疹如何预防？</h2>
+            <ul class="info-list">
+                <li><strong>疫苗接种：</strong>可咨询医生评估是否接种带状疱疹疫苗。50岁及以上人群，以及存在免疫功能低下风险的人群更应重视。</li>
+                <li><strong>健康生活：</strong>保持规律作息，避免过度劳累，均衡饮食，适度运动，帮助维持良好免疫状态。</li>
+                <li><strong>基础病管理：</strong>积极管理糖尿病、肿瘤治疗期、长期使用免疫抑制药物等基础情况，并按医嘱定期复诊。</li>
+                <li><strong>早诊早治疗：</strong>若已经出现疑似带状疱疹症状，应尽快就诊；越早开始规范治疗，越有助于减轻病情。</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>三、带状疱疹疼痛的发展阶段</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-badge"></div>
+                    <div class="timeline-title">第一阶段：前驱疼痛期 —— 皮疹没出来，疼痛先来了</div>
+                    <div class="timeline-desc">
+                        在皮疹出现前，部分患者会先出现一侧身体局部疼痛、灼烧感、针刺感、麻木、瘙痒或皮肤触碰不适。易被误认为肋间神经痛、肩背痛、胃痛、牙痛等。<strong>如出现“单侧、条带状、火烧样或电击样疼痛”，要提高警惕，尽早就诊。</strong>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-badge"></div>
+                    <div class="timeline-title">第二阶段：急性疱疹疼痛期 —— 皮疹出现，疼痛明显</div>
+                    <div class="timeline-desc">
+                        皮肤逐渐出现红斑、丘疹、水疱，常沿一侧神经分布。疼痛表现为火烧样、刀割样、针扎样、电击样，衣服轻轻摩擦都疼。<strong>此期是规范治疗的关键时期，应尽早抗病毒、镇痛和保护皮肤，避免抓挠、摩擦和继发感染。</strong>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-badge"></div>
+                    <div class="timeline-title">第三阶段：恢复期疼痛 —— 皮疹结痂好转，神经仍在“报警”</div>
+                    <div class="timeline-desc">
+                        随着水疱干涸结痂，皮肤表面逐渐好转，但受损神经恢复需要时间，仍会有隐痛、麻木、刺痛、灼痛或皮肤敏感。<strong>这个阶段不能因为皮疹好了就自行停药，应继续按医生安排治疗和复诊。</strong>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-badge"></div>
+                    <div class="timeline-title">第四阶段：带状疱疹后神经痛 —— 皮疹好了，疼痛还在</div>
+                    <div class="timeline-desc">
+                        如果皮疹愈合后疼痛仍持续存在，甚至影响睡眠、情绪和日常活动，就要警惕带状疱疹后神经痛。疼痛可反复发作，表现为烧灼痛、针刺痛、电击痛、紧束感或触碰痛。年龄较大、早期疼痛剧烈、皮疹范围较广、免疫功能较弱的患者更容易发生。<strong>此时应到疼痛科规范评估，可根据病情选择药物治疗、神经阻滞、周围神经脉冲射频等综合治疗方式。</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>四、治疗期间注意事项</h2>
+            <ul class="info-list">
+                <li>遵医嘱规律使用抗病毒药、止痛药及其他治疗药物，不自行停药、换药。</li>
+                <li>皮疹处保持清洁、干燥，不抓挠、不挤破水疱，避免贴刺激性较强的药物或敷料。</li>
+                <li>穿宽松、柔软的衣物以减少摩擦；如疼痛明显，可在医生指导下适当冷敷缓解不适。</li>
+                <li>注意休息，多饮水，饮食宜清淡。</li>
+                <li><strong>隔离提醒：</strong>皮疹未完全结痂前，注意手卫生，尽量避免与孕妇、新生儿、免疫功能低下者以及未患过水痘或未接种相关疫苗者密切接触。</li>
+                <li>若出现高热、皮疹迅速增多、眼部或耳部受累、疼痛明显加重等情况，请及时就医。</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>五、行周围神经脉冲射频术 · 术后护理</h2>
+            <ul class="info-list">
+                <li>术后请在医护人员指导下休息和活动，短时间内避免剧烈运动、弯腰负重和突然起身。</li>
+                <li>穿刺部位敷料要保持清洁、干燥；如无特殊医嘱，<strong>24小时内尽量不要沾水</strong>。</li>
+                <li>术后局部轻度酸胀、麻木或疼痛短时波动，多数情况下可逐渐缓解。</li>
+                <li>按医嘱继续或调整相关药物，不要因为症状稍有缓解就自行停药。</li>
+                <li>如出现穿刺处明显红肿、渗液、持续发热、肢体无力或麻木加重、剧烈疼痛、大小便异常等情况，请及时联系医生。</li>
+            </ul>
+        </div>
+
+        <img src="./2.png" alt="" class="preview">
+
+        <div class="card">
+            <h2>六、用药注意事项</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 30%">药物类别</th>
+                            <th style="width: 70%">用药提醒</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>抗病毒药</strong><br><small style="color:var(--text-light)">如阿昔洛韦、伐昔洛韦等</small></td>
+                            <td>应尽早、按时、按量服用；若有肾功能问题或正在服用其他药物，请主动告知医生。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>止痛药</strong></td>
+                            <td>应按医嘱使用。若服药后出现胃部不适、明显头晕等情况，应及时告知医护人员，<span class="danger-text">不要自行叠加同类止痛药</span>。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>神经病理性疼痛药</strong><br><small style="color:var(--text-light)">如加巴喷丁、普瑞巴林等</small>
+                            </td>
+                            <td>开始用药或调整剂量时，可能出现头晕、嗜睡，<span class="danger-text">注意防跌倒</span>。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>外用药</strong></td>
+                            <td>只在医生指导下使用，按规定部位和次数涂抹；如局部刺激明显或破溃加重，应及时咨询医生。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>通用提醒</strong></td>
+                            <td>请如实告知药物过敏史、基础疾病及正在使用的全部药物；<span class="danger-text">不要擅自加量、减量、漏服后重复补服或突然停药</span>。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        <div class="card alert-card">
+            <h2>🚨 七、出现以下情况，请及时告诉医生！</h2>
+            <ul class="info-list alert-list">
+                <li>疼痛突然明显加重，影响睡眠或日常活动；</li>
+                <li>皮疹范围扩大、出现化脓、渗液或高热；</li>
+                <li>眼部、耳部、面部出现疱疹、疼痛或视听异常；</li>
+                <li>术后出现穿刺处红肿渗液、持续发热、肢体无力或麻木加重；</li>
+                <li>用药后出现明显过敏反应、呼吸不适、严重头晕或其他不适。</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p style="text-align: left;">💡 温馨提示：以上内容用于患者宣教，具体检查、治疗、术后要求及用药方案请以主管医生和护士的当日指导为准。</p>
+            <p style="margin-top: 6px; font-weight: 600; color: var(--primary-color);">疼痛科患者宣教</p>
+        </div>
+
+    </div>
+
+    <script src="./viewer.min.js"></script>
+    <script>
+        document.querySelectorAll('.preview').forEach(img => {
+            new Viewer(img);
+        });
+    </script>
+</body>
+
+</html>
